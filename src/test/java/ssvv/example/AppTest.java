@@ -80,4 +80,5 @@ public class AppTest {
         studentValidator.validate(mockedStudent);
         // No exception should be thrown
     }
+    
 }
