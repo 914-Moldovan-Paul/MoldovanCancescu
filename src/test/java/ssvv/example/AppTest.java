@@ -1,11 +1,13 @@
 package ssvv.example;
 
 import domain.Student;
+import domain.Tema;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import validation.StudentValidator;
+import validation.TemaValidator;
 import validation.ValidationException;
 
 import static org.mockito.Mockito.when;
@@ -21,6 +23,12 @@ public class AppTest {
 
     @InjectMocks
     private StudentValidator studentValidator;
+
+    @Mock
+    private Tema mockedTema;
+
+    @InjectMocks
+    private TemaValidator temaValidator;
 
     @org.junit.Test(expected = ValidationException.class)
     public void testInvalidID() throws ValidationException {
@@ -71,5 +79,29 @@ public class AppTest {
         when(mockedStudent.getGrupa()).thenReturn(500);
         studentValidator.validate(mockedStudent);
         // No exception should be thrown
+    }
+
+    @org.junit.Test(expected = ValidationException.class)
+    public void testInvalidIDTema() throws ValidationException {
+        // Initialize tema with invalid ID
+        Tema tema = new Tema(null, "Descriere", 5, 10);
+        when(mockedTema.getID()).thenReturn(tema.getID());
+        when(mockedTema.getDescriere()).thenReturn(tema.getDescriere());
+        when(mockedTema.getDeadline()).thenReturn(tema.getDeadline());
+        when(mockedTema.getStartline()).thenReturn(tema.getStartline());
+
+        temaValidator.validate(mockedTema);
+    }
+
+    @org.junit.Test(expected = ValidationException.class)
+    public void testEmptyDescriere() throws ValidationException {
+        // Initialize tema with empty descriere
+        Tema tema = new Tema("1", "", 5, 10);
+        when(mockedTema.getID()).thenReturn(tema.getID());
+        when(mockedTema.getDescriere()).thenReturn(tema.getDescriere());
+        when(mockedTema.getDeadline()).thenReturn(tema.getDeadline());
+        when(mockedTema.getStartline()).thenReturn(tema.getStartline());
+
+        temaValidator.validate(mockedTema);
     }
 }

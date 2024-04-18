@@ -35,5 +35,11 @@
       <version>3.10.0</version> <!-- Use the latest version -->
       <scope>test</scope> <!-- Since it's for testing purposes -->
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.8.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
