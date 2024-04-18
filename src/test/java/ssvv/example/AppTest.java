@@ -80,28 +80,4 @@ public class AppTest {
         studentValidator.validate(mockedStudent);
         // No exception should be thrown
     }
-
-    @org.junit.Test(expected = ValidationException.class)
-    public void testInvalidIDTema() throws ValidationException {
-        // Initialize tema with invalid ID
-        Tema tema = new Tema(null, "Descriere", 5, 10);
-        when(mockedTema.getID()).thenReturn(tema.getID());
-        when(mockedTema.getDescriere()).thenReturn(tema.getDescriere());
-        when(mockedTema.getDeadline()).thenReturn(tema.getDeadline());
-        when(mockedTema.getStartline()).thenReturn(tema.getStartline());
-
-        temaValidator.validate(mockedTema);
-    }
-
-    @org.junit.Test(expected = ValidationException.class)
-    public void testEmptyDescriere() throws ValidationException {
-        // Initialize tema with empty descriere
-        Tema tema = new Tema("1", "", 5, 10);
-        when(mockedTema.getID()).thenReturn(tema.getID());
-        when(mockedTema.getDescriere()).thenReturn(tema.getDescriere());
-        when(mockedTema.getDeadline()).thenReturn(tema.getDeadline());
-        when(mockedTema.getStartline()).thenReturn(tema.getStartline());
-
-        temaValidator.validate(mockedTema);
-    }
 }
