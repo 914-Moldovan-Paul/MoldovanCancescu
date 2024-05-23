@@ -88,10 +88,9 @@ public class Lab4Test {
         new File("noteTest.xml").delete();
     }
 
-
     @Test
     public void testAddStudent() {
-        assertThat(Lab4Test.service.saveStudent("70", "JohnDoe", 934), is(1));
+        assertThat(Lab4Test.service.saveStudent("22", "JohnDoe", 934), is(1));
     }
 
     @Test
@@ -101,13 +100,31 @@ public class Lab4Test {
 
     @Test
     public void testAddGrade() {
-        assertThat(Lab4Test.service.saveNota("70", "2", 10, 7, "good"), is(1));
+        assertThat(Lab4Test.service.saveNota("22", "2", 10, 7, "good"), is(1));
     }
 
     @Test
     public void testIntegration() {
-        assertThat(Lab4Test.service.saveStudent("70", "Ion", 934), is(0));
-        assertThat(Lab4Test.service.saveTema("2", "TestValid", 9, 7), is(0));
+        assertThat(Lab4Test.service.saveStudent("22", "JohnDoe", 934), is(0));
+        assertThat(Lab4Test.service.saveTema("2", "test", 9, 7), is(0));
         assertThat(Lab4Test.service.saveNota("700", "2", 10, 7, "good"), is(-1));
+    }
+
+    @Test
+    public void incrementalTestAddStudent() {
+        assertThat(Lab4Test.service.saveStudent("23", "JaneDoe", 935), is(1));
+    }
+
+    @Test
+    public void incrementalTestAddAssignment() {
+        assertThat(Lab4Test.service.saveStudent("24", "JimDoe", 936), is(1));
+        assertThat(Lab4Test.service.saveTema("3", "project", 10, 8), is(1));
+    }
+
+    @Test
+    public void incrementalTestAddGrade() {
+        assertThat(Lab4Test.service.saveStudent("25", "JakeDoe", 937), is(1));
+        assertThat(Lab4Test.service.saveTema("4", "homework", 8, 6), is(1));
+        assertThat(Lab4Test.service.saveNota("25", "4", 9.5, 7, "well done"), is(1));
     }
 }
